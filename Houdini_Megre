@@ -1,0 +1,9 @@
+merga_geo = list(hou.selectedNodes())                  #读取houdini节点信息
+merge_main = merge_geo[0].createOutputNode('merga')    #连接第一个节点，如果选择了多个节点的话
+num = len(merge_geo)                                   #数数到底连接了几个节点呢
+num = num - 1                                          #因为list包括0，所以-1
+
+while num != 0                                         #停止条件 num = 0
+  Port = merge_geo[num]                                #循环cache 用于存储单次循环的欲连接节点
+  merge_main.setNextInput(Port,0)                      #连上拉
+  num = num - 1                                        #递减 用于停止 计数
